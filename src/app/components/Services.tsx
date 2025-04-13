@@ -1,4 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useId, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useOutsideClick } from "../hooks/use-outside-click";
 import {
   Monitor,
   Smartphone,
@@ -6,6 +10,7 @@ import {
   ShoppingCart,
   Chrome,
   Package,
+  X as CloseIcon,
 } from "lucide-react";
 
 const serviceData = [
@@ -22,6 +27,22 @@ const serviceData = [
     color: "bg-orange-50",
     iconBg: "bg-orange-100",
     learnMoreColor: "text-[#FF6B00]",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          Our website development services combine cutting-edge technology with
+          user-centric design to create engaging digital experiences.
+        </p>
+        <ul className="list-disc pl-4 space-y-2">
+          <li>Custom WordPress and Next.js development</li>
+          <li>Mobile-first responsive design approach</li>
+          <li>Performance optimization and SEO best practices</li>
+          <li>Secure payment gateway integration</li>
+          <li>Content Management System (CMS) setup</li>
+          <li>Website maintenance and support</li>
+        </ul>
+      </div>
+    ),
   },
   {
     icon: <Smartphone className="w-8 h-8 text-[#2563EB]" />,
@@ -36,6 +57,22 @@ const serviceData = [
     color: "bg-blue-50",
     iconBg: "bg-blue-100",
     learnMoreColor: "text-[#2563EB]",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          We create powerful, scalable mobile applications that provide seamless
+          user experiences across all platforms.
+        </p>
+        <ul className="list-disc pl-4 space-y-2">
+          <li>Native iOS and Android development</li>
+          <li>Cross-platform development with Flutter</li>
+          <li>Real-time data synchronization</li>
+          <li>Push notification integration</li>
+          <li>App store optimization</li>
+          <li>Ongoing maintenance and updates</li>
+        </ul>
+      </div>
+    ),
   },
   {
     icon: <Brain className="w-8 h-8 text-[#10B981]" />,
@@ -50,6 +87,22 @@ const serviceData = [
     color: "bg-green-50",
     iconBg: "bg-green-100",
     learnMoreColor: "text-[#10B981]",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          Leverage the power of AI and machine learning to transform your
+          business operations and decision-making processes.
+        </p>
+        <ul className="list-disc pl-4 space-y-2">
+          <li>Custom ML model development</li>
+          <li>Natural Language Processing (NLP)</li>
+          <li>Computer Vision solutions</li>
+          <li>Predictive analytics</li>
+          <li>AI-powered automation</li>
+          <li>Data analysis and visualization</li>
+        </ul>
+      </div>
+    ),
   },
   {
     icon: <ShoppingCart className="w-8 h-8 text-[#9333EA]" />,
@@ -64,6 +117,22 @@ const serviceData = [
     color: "bg-purple-50",
     iconBg: "bg-purple-100",
     learnMoreColor: "text-[#9333EA]",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          Build and scale your online store with our comprehensive e-commerce
+          solutions designed for modern retail.
+        </p>
+        <ul className="list-disc pl-4 space-y-2">
+          <li>Custom e-commerce platform development</li>
+          <li>Shopping cart and checkout optimization</li>
+          <li>Payment gateway integration</li>
+          <li>Inventory management systems</li>
+          <li>Customer analytics and reporting</li>
+          <li>Mobile commerce solutions</li>
+        </ul>
+      </div>
+    ),
   },
   {
     icon: <Chrome className="w-8 h-8 text-[#EAB308]" />,
@@ -78,6 +147,22 @@ const serviceData = [
     color: "bg-yellow-50",
     iconBg: "bg-yellow-100",
     learnMoreColor: "text-[#EAB308]",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          Extend browser functionality with custom extensions that streamline
+          workflows and enhance productivity.
+        </p>
+        <ul className="list-disc pl-4 space-y-2">
+          <li>Chrome extension development</li>
+          <li>Firefox add-on creation</li>
+          <li>Cross-browser compatibility</li>
+          <li>API integration</li>
+          <li>Security and performance optimization</li>
+          <li>Extension store deployment</li>
+        </ul>
+      </div>
+    ),
   },
   {
     icon: <Package className="w-8 h-8 text-[#EC4899]" />,
@@ -92,12 +177,119 @@ const serviceData = [
     color: "bg-pink-50",
     iconBg: "bg-pink-100",
     learnMoreColor: "text-[#EC4899]",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          Develop and maintain high-quality NPM packages that solve common
+          development challenges.
+        </p>
+        <ul className="list-disc pl-4 space-y-2">
+          <li>Custom package development</li>
+          <li>React component libraries</li>
+          <li>Utility function packages</li>
+          <li>Package documentation</li>
+          <li>Version management</li>
+          <li>Continuous integration setup</li>
+        </ul>
+      </div>
+    ),
   },
 ];
 
 export const Services = () => {
+  const [active, setActive] = useState<(typeof serviceData)[number] | null>(
+    null
+  );
+  const id = useId();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (active) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [active]);
+
+  useOutsideClick(ref, () => setActive(null));
+
   return (
-    <section className="py-20">
+    <section className="py-20 relative">
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/20 h-full w-full z-10"
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {active && (
+          <div className="fixed inset-0 grid place-items-center z-[100]">
+            <motion.button
+              key={`button-${active.title}-${id}`}
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.05 },
+              }}
+              className="flex absolute top-4 right-4 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg"
+              onClick={() => setActive(null)}
+            >
+              <CloseIcon className="w-4 h-4" />
+            </motion.button>
+            <motion.div
+              layoutId={`card-${active.title}-${id}`}
+              ref={ref}
+              className={`w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col ${active.color} sm:rounded-3xl overflow-hidden`}
+            >
+              <div className="p-6 md:p-8">
+                <div className="flex items-start gap-4 mb-6">
+                  <motion.div
+                    layoutId={`icon-${active.title}-${id}`}
+                    className={`${active.iconBg} w-12 h-12 rounded-lg flex items-center justify-center shrink-0`}
+                  >
+                    {active.icon}
+                  </motion.div>
+                  <div>
+                    <motion.h3
+                      layoutId={`title-${active.title}-${id}`}
+                      className="text-xl font-semibold mb-2"
+                    >
+                      {active.title}
+                    </motion.h3>
+                    <motion.p
+                      layoutId={`description-${active.description}-${id}`}
+                      className="text-gray-600"
+                    >
+                      {active.description}
+                    </motion.p>
+                  </div>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="text-gray-600 overflow-auto max-h-[400px] pr-4"
+                  style={{
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#CBD5E1 transparent",
+                  }}
+                >
+                  {active.content()}
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4">
@@ -111,19 +303,30 @@ export const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceData.map((service, index) => (
-            <div
-              key={index}
-              className={`${service.color} rounded-xl p-6 transition-transform hover:-translate-y-1`}
+            <motion.div
+              layoutId={`card-${service.title}-${id}`}
+              key={service.title}
+              onClick={() => setActive(service)}
+              className={`${service.color} rounded-xl p-6 transition-all hover:shadow-lg cursor-pointer`}
             >
-              <div
+              <motion.div
+                layoutId={`icon-${service.title}-${id}`}
                 className={`${service.iconBg} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
               >
                 {service.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">
+              </motion.div>
+              <motion.h3
+                layoutId={`title-${service.title}-${id}`}
+                className="text-xl font-semibold mb-3"
+              >
+                {service.title}
+              </motion.h3>
+              <motion.p
+                layoutId={`description-${service.description}-${id}`}
+                className="text-gray-600 text-sm mb-4"
+              >
                 {service.description}
-              </p>
+              </motion.p>
               <ul className="space-y-2 mb-4">
                 {service.features.map((feature, idx) => (
                   <li
@@ -135,12 +338,7 @@ export const Services = () => {
                   </li>
                 ))}
               </ul>
-              <button
-                className={`${service.learnMoreColor} text-sm font-medium hover:underline`}
-              >
-                Learn More →
-              </button>
-            </div>
+            </motion.div>
           ))}
         </div>
 
