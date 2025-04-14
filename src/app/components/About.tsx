@@ -1,6 +1,5 @@
 import React from "react";
 import { Users, Lightbulb, Shield, Clock } from "lucide-react";
-import Image from "next/image";
 
 const About = () => {
   return (

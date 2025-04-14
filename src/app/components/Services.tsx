@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useOutsideClick } from "../hooks/use-outside-click";
 import {
   Monitor,
-  Smartphone,
   Brain,
   ShoppingCart,
   Chrome,
@@ -323,7 +322,7 @@ export const Services = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {serviceData.map((service, index) => (
+          {serviceData.map((service) => (
             <motion.div
               layoutId={`card-${service.title}-${id}`}
               key={service.title}
