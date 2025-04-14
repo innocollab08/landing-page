@@ -15,44 +15,17 @@ import {
 
 const serviceData = [
   {
-    icon: <Monitor className="w-8 h-8 text-[#FF6B00]" />,
-    title: "Website Development",
+    icon: <Brain className="w-8 h-8 text-[#2563EB]" />,
+    title: "Agents as a Service",
     description:
-      "Custom-designed, responsive websites optimized for performance, SEO, and user experience across all devices.",
+      "Build and deploy AI-powered agents and automated workflows to streamline business processes and enhance productivity.",
     features: [
-      "Responsive Design",
-      "SEO Optimization",
-      "Content Management Systems",
-    ],
-    color: "bg-orange-50",
-    iconBg: "bg-orange-100",
-    learnMoreColor: "text-[#FF6B00]",
-    content: () => (
-      <div className="space-y-4">
-        <p>
-          Our website development services combine cutting-edge technology with
-          user-centric design to create engaging digital experiences.
-        </p>
-        <ul className="list-disc pl-4 space-y-2">
-          <li>Custom WordPress and Next.js development</li>
-          <li>Mobile-first responsive design approach</li>
-          <li>Performance optimization and SEO best practices</li>
-          <li>Secure payment gateway integration</li>
-          <li>Content Management System (CMS) setup</li>
-          <li>Website maintenance and support</li>
-        </ul>
-      </div>
-    ),
-  },
-  {
-    icon: <Smartphone className="w-8 h-8 text-[#2563EB]" />,
-    title: "Mobile App Development",
-    description:
-      "Cross-platform mobile applications built with FlutterFlow, delivering native-like performance with a single codebase.",
-    features: [
-      "FlutterFlow Development",
-      "Cross-Platform Solutions",
-      "App Store Deployment",
+      "Custom AI Agents",
+      "Workflow Automation",
+      "Process Optimization",
+      "Integration Services",
+      "Real-time Monitoring",
+      "Scalable Solutions",
     ],
     color: "bg-blue-50",
     iconBg: "bg-blue-100",
@@ -60,16 +33,52 @@ const serviceData = [
     content: () => (
       <div className="space-y-4">
         <p>
-          We create powerful, scalable mobile applications that provide seamless
-          user experiences across all platforms.
+          Transform your business operations with intelligent AI agents and
+          automated workflows that handle complex tasks efficiently.
         </p>
         <ul className="list-disc pl-4 space-y-2">
-          <li>Native iOS and Android development</li>
-          <li>Cross-platform development with Flutter</li>
+          <li>Custom AI agent development</li>
+          <li>Workflow automation and optimization</li>
+          <li>Process integration and orchestration</li>
+          <li>Real-time monitoring and analytics</li>
+          <li>Scalable deployment solutions</li>
+          <li>Continuous improvement and updates</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    icon: <Monitor className="w-8 h-8 text-[#FF6B00]" />,
+    title: "Web & Mobile Development",
+    description:
+      "Full-stack development solutions for web and mobile platforms, delivering seamless digital experiences across all devices.",
+    features: [
+      "Responsive Web Development",
+      "Cross-Platform Mobile Apps",
+      "Progressive Web Apps (PWA)",
+      "API Development & Integration",
+      "Performance Optimization",
+      "App Store Deployment",
+    ],
+    color: "bg-orange-50",
+    iconBg: "bg-orange-100",
+    learnMoreColor: "text-[#FF6B00]",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          Our comprehensive web and mobile development services combine
+          cutting-edge technology with user-centric design to create engaging
+          digital experiences across all platforms.
+        </p>
+        <ul className="list-disc pl-4 space-y-2">
+          <li>Custom WordPress and Next.js development</li>
+          <li>React Native and Flutter mobile apps</li>
+          <li>Mobile-first responsive design approach</li>
+          <li>Cross-platform development solutions</li>
+          <li>Performance optimization and SEO</li>
+          <li>App store optimization and deployment</li>
+          <li>Secure payment gateway integration</li>
           <li>Real-time data synchronization</li>
-          <li>Push notification integration</li>
-          <li>App store optimization</li>
-          <li>Ongoing maintenance and updates</li>
         </ul>
       </div>
     ),
@@ -83,6 +92,9 @@ const serviceData = [
       "Predictive Analytics",
       "Natural Language Processing",
       "Computer Vision",
+      "Custom ML Models",
+      "Data Analysis",
+      "AI Integration",
     ],
     color: "bg-green-50",
     iconBg: "bg-green-100",
@@ -113,6 +125,9 @@ const serviceData = [
       "Shopping Cart Development",
       "Payment Gateway Integration",
       "Inventory Management",
+      "Customer Analytics",
+      "Mobile Commerce",
+      "Multi-vendor Support",
     ],
     color: "bg-purple-50",
     iconBg: "bg-purple-100",
@@ -143,6 +158,9 @@ const serviceData = [
       "Chrome Extensions",
       "Firefox Add-ons",
       "Cross-Browser Compatibility",
+      "API Integration",
+      "Security Features",
+      "Performance Optimization",
     ],
     color: "bg-yellow-50",
     iconBg: "bg-yellow-100",
@@ -173,6 +191,9 @@ const serviceData = [
       "Authentication Packages",
       "Utility Libraries",
       "React/Next.js Components",
+      "TypeScript Support",
+      "Documentation",
+      "Version Management",
     ],
     color: "bg-pink-50",
     iconBg: "bg-pink-100",

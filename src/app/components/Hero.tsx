@@ -3,6 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock } from "lucide-react";
+import react from "../../../public/logos/react.png"
+import nextjs from "../../../public/logos/next-js.png"
+import node from "../../../public/logos/node.png"
+import postgres from "../../../public/logos/postgres.png"
+import flutter from "../../../public/logos/flutterflow.png"
 
 const Hero = () => {
   return (
@@ -48,20 +53,20 @@ const Hero = () => {
               </p>
               <div className="flex items-center gap-6">
                 {/* Replace with actual tech logos */}
-                <div className="w-8 h-8 bg-blue-100 flex items-center justify-center rounded">
-                  <span className="text-blue-500 text-xs">AWS</span>
+                <div className="w-8 h-8  flex items-center justify-center rounded">
+                  <Image src={nextjs} alt="nextjs" />
                 </div>
-                <div className="w-8 h-8 bg-blue-100 flex items-center justify-center rounded">
-                  <span className="text-blue-500 text-xs">React</span>
+                <div className="w-8 h-8  flex items-center justify-center rounded">
+                  <Image src={react} alt="nextjs"/>
                 </div>
-                <div className="w-8 h-8 bg-blue-100 flex items-center justify-center rounded">
-                  <span className="text-blue-500 text-xs">Node</span>
+                <div className="w-8 h-8  flex items-center justify-center rounded">
+                  <Image src={node} alt="nextjs"/>
                 </div>
-                <div className="w-8 h-8 bg-blue-100 flex items-center justify-center rounded">
-                  <span className="text-blue-500 text-xs">Vue</span>
+                <div className="w-8 h-8  flex items-center justify-center rounded">
+                  <Image src={postgres} alt="nextjs"/>
                 </div>
-                <div className="w-8 h-8 bg-blue-100 flex items-center justify-center rounded">
-                  <span className="text-blue-500 text-xs">Next</span>
+                <div className="w-8 h-8  flex items-center justify-center rounded">
+                  <Image src={flutter} alt="nextjs"/>
                 </div>
               </div>
             </div>
