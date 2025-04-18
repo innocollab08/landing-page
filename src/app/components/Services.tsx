@@ -258,8 +258,15 @@ export const Services = () => {
     });
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative " id="services">
       <AnimatePresence>
         {active && (
           <motion.div
@@ -425,6 +432,7 @@ export const Services = () => {
 
         <div className="flex justify-center mt-16">
           <motion.button
+          onClick={() => scrollToSection("contact")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-[#FF6B00] text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-[#FF8533] transition-colors shadow-lg hover:shadow-xl"

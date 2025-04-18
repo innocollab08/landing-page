@@ -3,7 +3,7 @@ import { Users, Lightbulb, Shield, Clock } from "lucide-react";
 
 const About = () => {
   return (
-    <section className="bg-[#F9FAFB] py-20">
+    <section className="bg-[#F9FAFB] py-20 " id="about">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -35,7 +35,7 @@ const About = () => {
                 <div className="text-gray-600">Client Satisfaction</div>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-lg">
-                <div className="text-[#2563EB] text-4xl font-bold">50+</div>
+                <div className="text-[#2563EB] text-4xl font-bold">10+</div>
                 <div className="text-gray-600">Projects Completed</div>
               </div>
             </div>
@@ -115,10 +115,10 @@ const About = () => {
                 </p>
               </div>
             </div>
-
+{/* 
             <button className="bg-[#2563EB] text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">
               Learn More About Us
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
