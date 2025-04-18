@@ -259,7 +259,7 @@ export const Services = () => {
   };
 
   return (
-    <section className="py-20 relative">
+    <section className="py-30 relative" id="services">
       <AnimatePresence>
         {active && (
           <motion.div
