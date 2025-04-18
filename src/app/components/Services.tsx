@@ -10,6 +10,7 @@ import {
   Chrome,
   Package,
   X as CloseIcon,
+  ChevronDown,
 } from "lucide-react";
 
 const serviceData = [
@@ -220,18 +221,42 @@ export const Services = () => {
   const [active, setActive] = useState<(typeof serviceData)[number] | null>(
     null
   );
+  const [expandedServices, setExpandedServices] = useState<Set<string>>(
+    new Set()
+  );
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setActive(null);
+      }
+    }
+
     if (active) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
+
+  const toggleExpand = (title: string) => {
+    setExpandedServices((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(title)) {
+        newSet.delete(title);
+      } else {
+        newSet.add(title);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <section className="py-20 relative">
@@ -241,23 +266,21 @@ export const Services = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 bg-black/20 h-full w-full z-10"
           />
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {active && (
           <div className="fixed inset-0 grid place-items-center z-[100]">
             <motion.button
               key={`button-${active.title}-${id}`}
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{
-                opacity: 0,
-                transition: { duration: 0.05 },
-              }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="flex absolute top-4 right-4 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg"
               onClick={() => setActive(null)}
             >
@@ -266,6 +289,10 @@ export const Services = () => {
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className={`w-full max-w-[600px] h-full md:h-fit md:max-h-[90%] flex flex-col ${active.color} sm:rounded-3xl overflow-hidden`}
             >
               <div className="p-6 md:p-8">
@@ -293,9 +320,10 @@ export const Services = () => {
                 </div>
 
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.3 }}
                   className="text-gray-600 overflow-auto max-h-[400px] pr-4"
                   style={{
                     scrollbarWidth: "thin",
@@ -327,6 +355,8 @@ export const Services = () => {
               layoutId={`card-${service.title}-${id}`}
               key={service.title}
               onClick={() => setActive(service)}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className={`${service.color} rounded-xl p-6 transition-all hover:shadow-lg cursor-pointer`}
             >
               <motion.div
@@ -347,25 +377,60 @@ export const Services = () => {
               >
                 {service.description}
               </motion.p>
-              <ul className="space-y-2 mb-4">
-                {service.features.map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-center text-sm text-gray-600"
+              <motion.ul
+                layout
+                className="space-y-2 mb-4"
+                transition={{ duration: 0.3 }}
+              >
+                {service.features
+                  .slice(0, expandedServices.has(service.title) ? undefined : 3)
+                  .map((feature, idx) => (
+                    <motion.li
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: idx * 0.1 }}
+                      className="flex items-center text-sm text-gray-600"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-500 mr-2"></div>
+                      {feature}
+                    </motion.li>
+                  ))}
+              </motion.ul>
+              {service.features.length > 3 && (
+                <motion.button
+                  layout
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleExpand(service.title);
+                  }}
+                  className={`flex items-center gap-1 text-sm font-medium ${service.learnMoreColor} hover:opacity-80 transition-opacity`}
+                >
+                  {expandedServices.has(service.title)
+                    ? "Show Less"
+                    : "Read More"}
+                  <motion.div
+                    animate={{
+                      rotate: expandedServices.has(service.title) ? 180 : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 mr-2"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
+                    <ChevronDown className="w-4 h-4" />
+                  </motion.div>
+                </motion.button>
+              )}
             </motion.div>
           ))}
         </div>
 
         <div className="flex justify-center mt-16">
-          <button className="bg-[#FF6B00] text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-[#FF8533] transition-colors shadow-lg hover:shadow-xl">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#FF6B00] text-white px-8 py-4 rounded-lg font-medium text-lg hover:bg-[#FF8533] transition-colors shadow-lg hover:shadow-xl"
+          >
             Get a Free Consultation
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

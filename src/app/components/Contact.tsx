@@ -95,7 +95,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium mb-1">Email Us</h4>
                     <p className="text-sm opacity-90">
-                      kavikarpagam6@gmail.com
+                      innocollab@gmail.com
                     </p>
                   </div>
                 </div>

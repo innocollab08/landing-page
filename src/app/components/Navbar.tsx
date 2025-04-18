@@ -10,8 +10,16 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
-    <header className="w-full border-b border-blue-100 relative z-50">
+    <header className="w-full border-b border-blue-100 sticky top-0 bg-white z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold">
@@ -21,45 +29,45 @@ const Navbar = () => {
 
         {/* Navigation Links - Desktop */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/" className="text-gray-700 hover:text-orange-500">
-            Home
-          </Link>
-          <Link
-            href="/services"
+          <button
+            onClick={() => scrollToSection("services")}
             className="text-gray-700 hover:text-orange-500"
           >
             Services
-          </Link>
-          <Link href="/about" className="text-gray-700 hover:text-orange-500">
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-gray-700 hover:text-orange-500"
+          >
             About
-          </Link>
-          <Link
-            href="/portfolio"
+          </button>
+          <button
+            onClick={() => scrollToSection("portfolio")}
             className="text-gray-700 hover:text-orange-500"
           >
             Portfolio
-          </Link>
-          <Link
-            href="/products"
+          </button>
+          <button
+            onClick={() => scrollToSection("products")}
             className="text-gray-700 hover:text-orange-500"
           >
             Products
-          </Link>
-          <Link href="/blog" className="text-gray-700 hover:text-orange-500">
-            Blog
-          </Link>
-          <Link href="/contact" className="text-gray-700 hover:text-orange-500">
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="text-gray-700 hover:text-orange-500"
+          >
             Contact
-          </Link>
+          </button>
         </nav>
 
         {/* CTA Button - Desktop */}
-        <Link
-          href="/get-started"
+        <button
+          onClick={() => scrollToSection("contact")}
           className="hidden md:block bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md font-medium transition-colors"
         >
           Get Started
-        </Link>
+        </button>
 
         {/* Mobile Menu Button */}
         <button
@@ -84,62 +92,42 @@ const Navbar = () => {
         } md:hidden overflow-hidden`}
       >
         <nav className="flex flex-col py-4 px-6 space-y-4">
-          <Link
-            href="/"
-            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
-            href="/services"
-            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
+          <button
+            onClick={() => scrollToSection("services")}
+            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100 text-left"
           >
             Services
-          </Link>
-          <Link
-            href="/about"
-            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100 text-left"
           >
             About
-          </Link>
-          <Link
-            href="/portfolio"
-            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            onClick={() => scrollToSection("portfolio")}
+            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100 text-left"
           >
             Portfolio
-          </Link>
-          <Link
-            href="/products"
-            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            onClick={() => scrollToSection("products")}
+            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100 text-left"
           >
             Products
-          </Link>
-          <Link
-            href="/blog"
-            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Blog
-          </Link>
-          <Link
-            href="/contact"
-            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="text-gray-700 hover:text-orange-500 py-2 border-b border-gray-100 text-left"
           >
             Contact
-          </Link>
-          <Link
-            href="/get-started"
-            className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md font-medium transition-colors inline-block text-center mt-2"
-            onClick={() => setIsMenuOpen(false)}
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md font-medium transition-colors text-center mt-2"
           >
             Get Started
-          </Link>
+          </button>
         </nav>
       </div>
     </header>

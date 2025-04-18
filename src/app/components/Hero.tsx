@@ -11,7 +11,7 @@ import flutter from "../../../public/logos/flutterflow.png"
 
 const Hero = () => {
   return (
-    <section className="bg-[#F9FAFB] py-16 md:py-24 relative overflow-hidden">
+    <section className="bg-[#F9FAFB] py-10 md:py-20 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-36 h-36 bg-blue-100 rounded-full -translate-x-1/2 -translate-y-1/2 opacity-80"></div>
       <div className="absolute bottom-0 right-0 w-48 h-48 bg-green-100 rounded-full translate-x-1/4 translate-y-1/4 opacity-60"></div>
