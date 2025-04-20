@@ -2,24 +2,126 @@
 
 import Image from "next/image";
 import { Clock } from "lucide-react";
-import react from "../../../public/logos/react.png"
-import nextjs from "../../../public/logos/next-js.png"
-import node from "../../../public/logos/node.png"
-import postgres from "../../../public/logos/postgres.png"
-import flutter from "../../../public/logos/flutterflow.png"
-import nest from "../../../public/logos/nest.png"
-import python from "../../../public/logos/python.png"
-import mongodb from "../../../public/logos/mongodb.png"
-import mysql from "../../../public/logos/mysql.png"
+import { FloatingDock } from "./ui/floating-dock";
+import react from "../../../public/logos/react.png";
+import nextjs from "../../../public/logos/next-js.png";
+import node from "../../../public/logos/node.png";
+import postgres from "../../../public/logos/postgres.png";
+import flutter from "../../../public/logos/flutterflow.png";
+import nest from "../../../public/logos/nest.png";
+import python from "../../../public/logos/python.png";
+import mongodb from "../../../public/logos/mongodb.png";
+import mysql from "../../../public/logos/mysql.png";
 
 const Hero = () => {
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const techItems = [
+    {
+      title: "Next.js",
+      icon: (
+        <Image
+          src={nextjs}
+          alt="Next.js"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "React",
+      icon: (
+        <Image
+          src={react}
+          alt="React"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "Nest.js",
+      icon: (
+        <Image
+          src={nest}
+          alt="Nest.js"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "Node.js",
+      icon: (
+        <Image
+          src={node}
+          alt="Node.js"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "Python",
+      icon: (
+        <Image
+          src={python}
+          alt="Python"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "Flutter",
+      icon: (
+        <Image
+          src={flutter}
+          alt="Flutter"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "PostgreSQL",
+      icon: (
+        <Image
+          src={postgres}
+          alt="PostgreSQL"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "MongoDB",
+      icon: (
+        <Image
+          src={mongodb}
+          alt="MongoDB"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+    {
+      title: "MySQL",
+      icon: (
+        <Image
+          src={mysql}
+          alt="MySQL"
+          className="w-full h-full object-contain"
+        />
+      ),
+      href: "#",
+    },
+  ];
 
   return (
     <section className="bg-[#F9FAFB] py-10 md:py-20 relative overflow-hidden">
@@ -62,36 +164,11 @@ const Hero = () => {
               <p className="text-sm text-gray-500 mb-4">
                 Technologies we work with:
               </p>
-              <div className="flex items-center gap-6">
-                {/* Replace with actual tech logos */}
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={nextjs} alt="nextjs" />
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={react} alt="react"/>
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={nest} alt="nest"/>
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={node} alt="node"/>
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={python} alt="python"/>
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={flutter} alt="flutterflow"/>
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={postgres} alt="postgres"/>
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={mongodb} alt="mongodb"/>
-                </div>
-                <div className="w-8 h-8  flex items-center justify-center rounded">
-                  <Image src={mysql} alt="mysql"/>
-                </div>
-              </div>
+              <FloatingDock
+                items={techItems}
+                desktopClassName="w-full"
+                mobileClassName="translate-y-0"
+              />
             </div>
           </div>
 
