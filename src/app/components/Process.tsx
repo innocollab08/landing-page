@@ -4,47 +4,48 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
 import { Lightbulb, Calendar, Palette, Code, Rocket } from "lucide-react";
+import Image from "next/image";
+import idea from "../../../public/process/idea.gif";
+import planning from "../../../public/process/consulting.gif";
+import design from "../../../public/process/digital-art.gif";
+import development from "../../../public/process/web-developer.gif";
+import deployment from "../../../public/process/startup.gif";
 
 const processSteps = [
   {
-    icon: <Lightbulb className="w-6 h-6" />,
     title: "Idea Generation",
     description:
       "We start by understanding your vision and brainstorming innovative solutions that align with your business goals.",
-    gradient: "from-blue-500 to-cyan-400",
-    accent: "bg-blue-500",
+    image: idea,
+    icon: <Lightbulb className="w-6 h-6 text-[#FF6B00]" />,
   },
   {
-    icon: <Calendar className="w-6 h-6" />,
     title: "Planning & Strategy",
     description:
       "Detailed planning and strategy development to ensure a clear roadmap for your project's success.",
-    gradient: "from-orange-500 to-amber-400",
-    accent: "bg-orange-500",
+    image: planning,
+    icon: <Calendar className="w-6 h-6 text-[#FF6B00]" />,
   },
   {
-    icon: <Palette className="w-6 h-6" />,
     title: "Design & Prototyping",
     description:
       "Creating beautiful, user-friendly interfaces with modern design principles and interactive prototypes.",
-    gradient: "from-purple-500 to-pink-400",
-    accent: "bg-purple-500",
+    image: design,
+    icon: <Palette className="w-6 h-6 text-[#FF6B00]" />,
   },
   {
-    icon: <Code className="w-6 h-6" />,
     title: "Development",
     description:
       "Building robust, scalable solutions using cutting-edge technologies and best practices.",
-    gradient: "from-green-500 to-emerald-400",
-    accent: "bg-green-500",
+    image: development,
+    icon: <Code className="w-6 h-6 text-[#FF6B00]" />,
   },
   {
-    icon: <Rocket className="w-6 h-6" />,
     title: "Deployment",
     description:
       "Seamless deployment and launch with thorough testing and optimization for performance.",
-    gradient: "from-red-500 to-rose-400",
-    accent: "bg-red-500",
+    image: deployment,
+    icon: <Rocket className="w-6 h-6 text-[#FF6B00]" />,
   },
 ];
 
@@ -76,23 +77,35 @@ const Process = () => {
           </p>
         </motion.div>
 
-        <div className="w-full px-4">
-          <BentoGrid>
+        <div className="w-full max-w-4xl mx-auto">
+          <BentoGrid className="gap-6">
             {processSteps.map((step, index) => (
               <BentoGridItem
                 key={index}
-                title={step.title}
+                title={
+                  <div className="flex items-center gap-2">
+                    {step.icon}
+                    <span className="text-lg font-semibold">{step.title}</span>
+                  </div>
+                }
                 description={step.description}
                 header={
                   <div
-                    className={`h-full w-full rounded-xl bg-gradient-to-r ${step.gradient} p-4`}
+                    className={`w-full rounded-xl overflow-hidden ${
+                      index === 3 ? "h-[250px]" : "h-[180px]"
+                    }`}
                   >
-                    <div className="flex items-center justify-center h-full">
-                      {step.icon}
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        fill
+                        className={`object-contain ${index === 3 ? "p-4" : ""}`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
                     </div>
                   </div>
                 }
-                icon={step.icon}
                 className={
                   index === 3
                     ? "md:col-span-2"

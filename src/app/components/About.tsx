@@ -1,5 +1,7 @@
 import React from "react";
 import { Users, Lightbulb, Shield, Clock } from "lucide-react";
+import minis from "../../../public/minis.jpeg";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -20,9 +22,10 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Image and Stats */}
           <div className="space-y-8">
-            <div className="bg-gray-100 rounded-xl p-8">
+            <div className=" rounded-xl p-8">
               <div className="flex justify-center">
-                <Users className="w-20 h-20 text-gray-400" />
+                {/* <Users className="w-20 h-20 text-gray-400" /> */}
+                <Image src={minis} alt="team" className="object-contain " />
               </div>
               <h3 className="text-center mt-4 text-xl font-semibold">
                 Our Talented Team
@@ -115,7 +118,7 @@ const About = () => {
                 </p>
               </div>
             </div>
-{/* 
+            {/* 
             <button className="bg-[#2563EB] text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">
               Learn More About Us
             </button> */}
